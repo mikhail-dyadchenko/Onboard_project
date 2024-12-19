@@ -5,6 +5,7 @@ def seed
   reset_db
   create_posts(10)
   create_comments(2..8)
+  create_users
 end
 
 def reset_db
@@ -36,6 +37,23 @@ def create_comments(quantity)
       comment = Comment.create(post_id: post.id, body: create_sentence)
       puts "Comment with id #{comment.id} for post with id #{comment.post.id} just created"
     end
+  end
+end
+
+
+def create_users
+  i = 0
+
+  10.times do
+    user_data = {
+      email: "user_#{i}@email.com",
+      password: 'testtest'
+    }
+
+    user = User.create!(user_data)
+    puts "User created with id #{user.id}"
+
+    i += 1
   end
 end
 
